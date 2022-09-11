@@ -1,0 +1,34 @@
+{
+  "name": "social-community-app",
+  "version": "0.0.1",
+  "description": "Project aimed at helping communities and their inhabitants, through a web application provided by multiple functionalities.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luigizuniga/SocialCommunity.git"
+  },
+  "keywords": [
+    "nodejs",
+    "rest",
+    "express",
+    "api",
+    "mysql",
+    "sequelize"
+  ],
+  "author": "luigi_zu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luigizuniga/SocialCommunity/issues"
+  },
+  "homepage": "https://github.com/luigizuniga/SocialCommunity#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.6"
+  }
+}
