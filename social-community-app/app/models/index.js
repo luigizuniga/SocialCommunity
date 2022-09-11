@@ -1,7 +1,7 @@
 // Database connection
 const dbConfig = require("../config/db.config");
 
-const Sequelize = require("sequelize");
+const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize(
     dbConfig.DB, 
     dbConfig.USER, 
@@ -10,7 +10,6 @@ const sequelize = new Sequelize(
         dialect: dbConfig.dialect,
         port: dbConfig.port,
         operatorsAliases: 0,
-
         pool: {
             max: dbConfig.pool.max, 
             min: dbConfig.pool.min,

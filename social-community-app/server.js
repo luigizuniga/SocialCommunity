@@ -2,10 +2,26 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
+
 const app = express();
 
 var corsOptions = {
     origin: "http://localhost:8081"
+};
+
+async function main(){
+    try {
+        const db = require("./app/models");      
+        const PORT = process.env.NODE_DOCKER_PORT || 8080;
+        await db.sequelize.sync();
+        
+        app.listen(PORT, () => {
+            console.log('==== Connection has been established successfully.====');
+            console.log(`Server is running on port ${PORT}.`);
+        });
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+      }
 };
 
 app.use(cors(corsOptions));
@@ -18,17 +34,6 @@ app.use(express.json());
 // content type application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// Sequelize 
-// ORM Model to create DB 
-const db = require("./app/models");
-
-db.sequelize.sync();
-
-// Drop table if it already exists
-// db.sequelize.sync({ force : true }).then(()=>{
-//     console.log("Drop and re-sync DB.");
-// });
-
 app.get("/", (req, res) => {
     res.json({
         message: "Welcome to social community application."
@@ -37,12 +42,7 @@ app.get("/", (req, res) => {
 
 require("./app/routes/publication.routes.js")(app);
 
-// set port, listen for requests
-const PORT = process.env.NODE_DOCKER_PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
-
+main();
 
 
 
